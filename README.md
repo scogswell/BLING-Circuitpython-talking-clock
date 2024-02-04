@@ -9,7 +9,6 @@ To: install, copy all files to your CIRCUITPY drive on BLING
 * `code.py`
 * `font5x8.bin`
 * `secrets.py`
-* `/sd`  
 
 These libraries should be in /lib:
     `adafruit_led_animation`, `adafruit_debouncer`, `adafruit_framebuf`, `adafruit_ntp`, 
@@ -20,7 +19,7 @@ Get library bundles from https://circuitpython.org/libraries
 
 If the program complains it can't find `board.I2S_AMP_BCLK` you need a newer Circuitpython. 
 
-Set your wifi ssid and password in "secrets.py"
+Set your wifi ssid and password in `secrets.py`
 Program will auto-attempt to set your time and timezone from the network.
 
 Copy the directory `voice` with all its files onto a FAT32 formatted microsd card
