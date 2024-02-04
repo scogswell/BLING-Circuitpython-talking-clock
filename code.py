@@ -303,8 +303,11 @@ def speak_time(t, use_am_pm=True):
     files = []
     if use_am_pm and t.tm_hour > 12:
         files.append(str(t.tm_hour-12)+".wav")
-    elif t.tm_hour == 0:
+    elif use_am_pm and t.tm_hour == 0:
         files.append("12.wav")
+    elif not use_am_pm and t.tm_hour < 10:
+        files.append("0.wav")
+        files.append(str(t.tm_hour)+".wav")
     else:
         files.append(str(t.tm_hour)+".wav")
     if t.tm_min != 0:
@@ -394,6 +397,14 @@ def test_speak_time():
     x = time.struct_time((2024,1,28,11,00,13,6,-1,-1))
     speak_time(x, use_am_pm=bling_settings.use_am_pm)
     x = time.struct_time((2024,1,28,00,30,13,6,-1,-1))
+    speak_time(x, use_am_pm=bling_settings.use_am_pm)
+    x = time.struct_time((2024,1,28,00,00,13,6,-1,-1))
+    speak_time(x, use_am_pm=bling_settings.use_am_pm)
+    x = time.struct_time((2024,1,28,9,13,13,6,-1,-1))
+    speak_time(x, use_am_pm=bling_settings.use_am_pm)
+    x = time.struct_time((2024,1,28,19,45,13,6,-1,-1))
+    speak_time(x, use_am_pm=bling_settings.use_am_pm)
+    x = time.struct_time((2024,1,28,1,00,13,6,-1,-1))
     speak_time(x, use_am_pm=bling_settings.use_am_pm)
 
 def erase_nvm():
